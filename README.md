@@ -5,7 +5,9 @@ Frontend: Ember.js 2.8
 Database: MongoDB
 
 Для того, чтобы запустить сервер необходимо:
+
 1)Установить Ruby on Rails
+
 2)Установить MonogDB на компьютер https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ (Установка на Ubuntu)
 
 https://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder (Ошибка, которая может возникнуть)
