@@ -1,0 +1,38 @@
+.franchise-templates-wrapper
+  .row.section-header
+    h4.page-title
+      div
+        | Франшиза&nbsp;
+        = model.name
+      if-can subjectType='Franchise' subjectId=model.id action='update'
+        = link-to 'edit-franchise' model.id class='btn new-item without-margin'
+          i.fa.fa-pencil-square-o
+          |Редактировать
+  .content-container
+    .col.s12
+      label Имя франшизы
+      p.lead = model.name
+    .col.s12
+      label Описание франшизы
+      p.lead.word-break = model.description
+    .col.s12
+      label Услуги
+      .row
+        if model.services
+          ul.collection
+            each model.services as |service|
+              li.collection-item
+                .row
+                  .col.s6
+                    label Название
+                    p.lead = service.name
+                  .col.s12
+                    label Описание
+                    p.lead = service.description
+                  .col.s4
+                    label Стоимость
+                    p.lead = service.price
+              br
+          .clearfix
+        else
+          p.lead Услуг нет

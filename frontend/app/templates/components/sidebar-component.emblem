@@ -1,0 +1,35 @@
+aside.sidebar-left
+  ul#nav-mobile.side-nav.fixed.clearfix.left
+    if user.is_franchise_administrator_or_super_user
+      sidebar-item
+        ul.collapsible data-collapsible="accordion"
+          li
+            = link-to 'new-client' model=user.franchise class='solo-link' current-when="new-client"
+              .collapsible-header.waves-effect
+                i.fa.fa-users
+                |Создание нового пользователя
+
+    if user.is_franchise_administrator
+      sidebar-item
+        ul.collapsible data-collapsible="accordion"
+          li
+            = link-to 'edit-franchise' user.franchise.id class='solo-link' current-when="edit-franchise"
+              .collapsible-header.waves-effect
+                i.fa.fa-calendar
+                |Управление франшизой
+
+    sidebar-item
+      ul.collapsible data-collapsible="accordion"
+        li
+          = link-to 'projects' class='solo-link' current-when="projects"
+            .collapsible-header.waves-effect
+              i.fa.fa-newspaper-o
+              |Проекты
+
+    sidebar-item
+      ul.collapsible data-collapsible="accordion"
+        li
+          = link-to 'schedule' class='solo-link' current-when="schedule"
+            .collapsible-header.waves-effect
+              i.fa.fa-calendar
+              |Календарь проектов

@@ -1,0 +1,33 @@
+.push-channel-wrapper
+  .row.section-header
+    h4.page-title
+      div Группа клиентов #{model.name}
+      = link-to 'edit-push-channel' model.id class='btn new-item without-margin'
+        i.fa.fa-pencil-square-o
+        | Редактировать
+  .content-container
+    .row
+      .col-12
+        label Название группы
+        p.lead = model.name
+
+      .col-12
+        label Описание группы
+        p.lead = model.description
+
+      if model.franchise
+        .col-12
+          label Франшиза
+          p.lead = model.franchise.name
+
+      if model.club
+        .col-12
+          label Клуб
+          p.lead = model.club.name
+
+      .col-12
+        h5 Общее количество клиентов в группе: #{model.users.length}
+        if model.users.length
+          ul
+            each model.users as |user|
+              li #{user.name}, Франшиза: #{user.franchise.name}

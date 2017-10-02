@@ -1,0 +1,39 @@
+if session.currentUser.is_franchise_administrator_or_super_user
+  .client-wrapper
+    .row.section-header
+      h4.page-title
+        div Создание пользователя
+
+    .content-container
+      .col.s12
+        label Ф.И.О.
+        = input type='text' value=model.name
+      .col.s12
+        label Телефон
+        = input type='text' value=model.mobile
+      .col.s12
+        label Email
+        = input type='email' value=model.email
+      .col.s12
+        label Пароль
+        = input type='text' value=model.password
+      .col.s12
+        label Статус пользователя
+        div
+          radio-button[
+                radioId="manager"
+                radioClass="with-gap"
+                value="manager"
+                groupValue=model.userRole]
+          label for="manager"  Менеджер
+        div
+          radio-button[
+                radioId="franchise_administrator"
+                radioClass="with-gap"
+                value="franchise_administrator"
+                groupValue=model.userRole]
+          label for="franchise_administrator"  Администратор франшизы
+
+
+      .col.s12.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить

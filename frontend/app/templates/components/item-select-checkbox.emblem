@@ -1,0 +1,3 @@
+= input id=item.id type="checkbox" checked=itemSelected
+label for=item.id
+  = item.name

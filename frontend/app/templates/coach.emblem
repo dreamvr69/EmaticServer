@@ -1,0 +1,71 @@
+.coach-wrapper
+  .row.section-header
+    h4.page-title
+      div Тренер #{model.name}
+      = link-to 'edit-coach' model.id class='btn new-item without-margin'
+        i.fa.fa-pencil-square-o
+        |Редактировать
+  .content-container
+    b Информация о тренере
+    hr
+    .col.s12
+      label ФИО тренера
+      p.lead = model.name
+    .col.s12
+      label Фото
+      p.lead
+        img class="materialboxed" width="650" src=model.imageUrl
+    .col.s12
+      label Пакеты персональных тренировок
+      if model.trainingPackages
+        ul.collection
+          each model.trainingPackages as |package|
+            li.collection-item
+              span = package.name
+      else
+        p.lead Данному тренеру еще не назначены пакеты персональных тренировок
+    .col.s12
+      label Образование тренера
+      .row
+        if model.coachEducations
+          ul.collection
+            each model.coachEducations as |education|
+              li.collection-item
+                = education.name
+        else
+          | Не указано
+    .col.s12
+      label Творческие и спортивные достижения
+      .row
+        if model.coachAchievements
+          ul.collection
+            each model.coachAchievements as |achievement|
+              li.collection-item
+                = achievement.name
+        else
+          | Не указаны
+    .col.s12
+      label Фитнес специализации
+      .row
+        if model.coachSpecializations
+          ul.collection
+            each model.coachSpecializations as |specialization|
+              li.collection-item
+                = specialization.name
+        else
+          | Не указаны
+    .col.s12
+      label Ведет персональные тренировки
+      p.lead
+        if model.conductingPersonal
+          | Да
+        else
+          | Нет
+
+    .col.s12
+      label Ведет групповые тренировки
+      p.lead
+        if model.conductingGroup
+          | Да
+        else
+          | Нет

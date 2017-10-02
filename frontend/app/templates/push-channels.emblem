@@ -1,0 +1,30 @@
+.push-channels-wrapper
+  .row.section-header
+    h4.page-title
+      div Группы клиентов
+      = link-to 'new-push-channel' class='btn new-item without-margin'
+        i.fa.fa-plus
+        | Добавить группу клиентов
+  .content-container
+      table.responsive-table
+        thead
+          tr
+            th  #
+            th  Название
+            th  Количество клиентов
+            th  Действия
+        tbody
+          = each model as |channel index|
+            tr
+              td = inc index page perPage
+              td = channel.name
+              td = channel.users.length
+              td
+                custom-action action='show'    model=channel icon='fa-search' tooltipTitle='Просмотреть'
+                custom-action action='edit'    model=channel icon='fa-pencil-square-o' tooltipTitle='Редактировать'
+                custom-action action='destroy' model=channel icon='fa-times' tooltipTitle='Удалить'
+
+      if isPaginationEnabled
+        = page-numbers content=paginationContent action='changePage'
+
+

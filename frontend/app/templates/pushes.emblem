@@ -1,0 +1,34 @@
+.pushes-wrapper
+  .row.section-header
+    h4.page-title
+      div Список пушей
+      = link-to 'new-push' class='btn new-item without-margin'
+        i.fa.fa-plus
+        | Отправить новый пуш
+  .content-container
+      table.responsive-table
+        thead
+          tr
+            th  #
+            th  Автор
+            th  Заголовок
+            th  Текст
+            th  Дата и время отправки
+            th  Статус
+            th  Действия
+        tbody
+          = each model as |push index|
+            tr
+              td = inc index page perPage
+              td = push.formattedCreator
+              td = push.title
+              td = push.text
+              td = push.formattedPublicationDate
+              td = push.formattedAasmState
+              td
+                custom-action action='show'    model=push icon='fa-search' tooltipTitle='Просмотреть'
+
+      if isPaginationEnabled
+        = page-numbers content=paginationContent action='changePage'
+
+

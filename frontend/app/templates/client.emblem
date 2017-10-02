@@ -1,0 +1,28 @@
+.client-wrapper
+  .row.section-header
+    h4.page-title
+      div Клиент #{model.name}
+      if-can subjectType='User' subjectId=null action='update'
+        = link-to 'edit-client' model.id class='btn new-item without-margin'
+          i.fa.fa-pencil-square-o
+          | Редактировать
+  .content-container
+    .col.s12
+      label Ф.И.О.
+      p.lead = model.name
+    .col.s12
+      label Франшиза
+      p.lead = model.franchise.name
+    .col.s12
+      label Телефон
+      p.lead = model.mobile
+    .col.s12
+      label Email
+      p.lead = model.email
+    .col.s12
+      label Авторизовался в приложении
+      p.lead = model.formattedAuthDate
+    .col.s12
+      label Количество баллов
+      p.lead = model.loyalty.score
+

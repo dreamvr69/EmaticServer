@@ -1,0 +1,54 @@
+.news-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Редактирование проекта
+  .content-container
+    form
+      .col.with-padding
+        label Статус проекта
+        div
+          br
+          radio-button[
+                radioId="booked"
+                radioClass="with-gap"
+                value="booked"
+                groupValue=model.state]
+          label for="booked"  Забронировано
+        div
+          radio-button[
+                radioId="confirmed"
+                radioClass="with-gap"
+                value="confirmed"
+                groupValue=model.state]
+          label for="confirmed"  Подтверждено
+        div
+          radio-button[
+                radioId="framed"
+                radioClass="with-gap"
+                value="framed"
+                groupValue=model.state]
+          label for="framed"  Оформлено
+
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'projects' class="waves-effect waves-light btn-large"
+          | Отмена
+    h5
+      div Визуализации:
+
+    table.responsive-table
+        thead
+              tr
+                th  #
+                th  Название комнаты
+                th  Начало
+                th  Конец
+                th  Действия
+        tbody
+              = each model.visualisations as |visualisation index|
+                tr
+                  td = index
+                  td = visualisation.room
+                  td = visualisation.begin
+                  td = visualisation.end
+                  td
+                    custom-action action='editVisualisation' model=visualisation icon='fa-search' tooltipTitle='Просмотреть'

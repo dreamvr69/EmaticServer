@@ -1,0 +1,44 @@
+.settings-wrapper
+  .row.section-header
+    h4.page-title
+      div Настройки шаринга
+
+  .content-container
+    .row
+      .col-12
+        label Количество баллов за шаринг VK
+        = input type='text' value=vkShareScore
+      .col-12
+        label Количество вознаграждаемых постов в день VK
+        = input type='text' value=vkSharePerDay
+      .col-12
+        label Количество баллов за шаринг Twitter
+        = input type='text' value=twitterShareScore
+      .col-12
+        label Количество вознаграждаемых постов в день Twitter
+        = input type='text' value=twitterSharePerDay
+      .col-12
+        label Количество баллов за шаринг Facebook
+        = input type='text' value=facebookShareScore
+      .col-12
+        label Количество вознаграждаемых постов в день Facebook
+        = input type='text' value=facebookSharePerDay
+      .col-12
+        label Количество баллов за шаринг Instagram
+        = input type='text' value=instagramShareScore
+      .col-12
+        label Количество вознаграждаемых постов в день Instagram
+        = input type='text' value=instagramSharePerDay
+
+    .row
+      if session.currentUser.isOwner
+        select-component title='Выбор франшизы' options=franchises value=selectedFranchise optionType='franchise'
+      if session.currentUser.isAdminOrOwner
+        if selectedFranchise
+          label Выберите клубы, для которых применить настройки
+          each selectedFranchise.clubs as |club|
+            .col-12
+              item-select-checkbox items=selectedClubs item=club
+    .row
+      button.waves-effect.waves-light.btn-large.white-text{action 'acceptSettings'} disabled=acceptButtonDisabled
+        | Применить настройки

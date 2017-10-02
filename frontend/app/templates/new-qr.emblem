@@ -1,0 +1,46 @@
+.qr-wrapper
+  .row.section-header
+    h4.page-title
+      div Создание полезного действия
+  .content-container
+    .row
+      .col.s12
+        label Название
+        = input type='text' value=model.name
+
+      .col.s12
+        label Описание
+        = textarea value=model.description class='materialize-textarea'
+
+      .col.s12
+        label Количество баллов
+        = input type='text' value=model.score
+
+      .col.s6
+        label Частота использования клиентом (в минутах)
+        = input type='text' value=model.usageFrequencyForClient
+
+      .col.s6
+        label Частота использования (в минутах)
+        = input type='text' value=model.usageFrequency
+
+      .col.s6
+        label Лимит использования в день для клиента
+        = input type='text' value=model.usageLimitPerDayForClient
+
+      .col.s6
+        label Лимит использования в день
+        = input type='text' value=model.usageLimitPerDay
+
+      .col.s6
+        label Лимит использования для клиента
+        = input type='text' value=model.usageLimitForClient
+
+      .col.s6
+        label Лимит использования
+        = input type='text' value=model.usageLimit
+
+      .col.s12.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'qrs' class="waves-effect waves-light btn-large"
+          | Отмена

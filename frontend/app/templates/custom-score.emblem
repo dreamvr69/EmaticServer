@@ -1,0 +1,46 @@
+.custom-score-wrapper
+  .row.section-header
+    h4.page-title
+      div Начисление баллов
+  .content-container
+    .row
+      .col.s12
+        label Количество баллов
+        = input type='text' value=score
+
+      .col.s12
+        label Комментарий
+        = textarea value=comment class='materialize-textarea'
+
+      if session.currentUser.isOwner
+        .col.s12
+          select-component title='Выбор франшизы' options=franchises value=franchise optionType='franchise'
+          if franchise
+            a.waves-effect.waves-light.btn-small.white-text.default{action 'removeFranchise'} Очистить поле франшиза
+
+      if session.currentUser.isAdminOrOwner
+        if franchise
+          .col.s12
+            select-component title='Выбор клуба' options=franchise.clubs value=club optionType='club'
+            if club
+              a.waves-effect.waves-light.btn-small.white-text.default{action 'removeClub'} Очистить поле клуб
+
+      .col.s12
+        h5 Клиенты: #{filteredUsers.length}
+      .row.filters
+        .col.s4
+          static-select title='Выбор пола' options=SEXES value=sex
+          if sex
+            a.waves-effect.waves-light.btn-small.white-text.default{action 'removeSex'} Очистить фильтр
+        .col.s1.margin-top
+          = input type='text' placeholder='Возраст (от):' value=ageFrom
+        .col.s1.margin-top
+          = input type='text' placeholder='Возраст (до):' value=ageTo
+        .col.s6.margin-top
+          = input type='text' placeholder='Ф.И.О.' value=filterName
+      .col.s12
+        each filteredUsers as |user|
+          item-select-checkbox items=selectedUsers item=user
+
+      .col.s12.actions.with-margin
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Начислить

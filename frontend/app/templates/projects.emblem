@@ -1,0 +1,30 @@
+.news-wrapper
+  .row.section-header
+    h4.page-title
+      div Список проектов
+  .content-container
+    table.responsive-table
+      thead
+        tr
+          th  #
+          th  Название мероприятия
+          th  ФИО клиента
+          th  Телефон клиента
+          th  Email клиента
+          th  Название компании
+          th  Начало
+          th  Конец
+          th  Действия
+      tbody
+        = each model as |project index|
+          tr
+            td = index
+            td = project.event_name
+            td = project.client_name
+            td = project.client_phone
+            td = project.client_emails
+            td = project.company_name
+            td = project.begin
+            td = project.end
+            td
+              custom-action action='edit' model=project icon='fa-search' tooltipTitle='Просмотреть'

@@ -1,0 +1,6 @@
+.content-container
+  .root-route-wrapper
+    .welcome-message
+      .center-align
+        h3
+          |Административная панель Terminal

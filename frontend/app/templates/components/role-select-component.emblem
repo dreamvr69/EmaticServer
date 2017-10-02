@@ -1,0 +1,5 @@
+= each availableRoles as |role|
+  p
+    = input class="radio" name="availableRolesGroup" type="radio" id=role.id value=role.id
+    label for=role.id
+      = role.russianName

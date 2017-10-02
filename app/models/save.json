@@ -1,0 +1,19 @@
+{
+	"ExecutionManagerData": {
+		"CustomArrangement": false
+	},
+	"PresetGenerationData": {
+		"ReactiveDataHolderData": {
+			"UserArguments": {
+				"IntTable": {},
+				"FloatTable": {},
+				"StringTable": {},
+				"BooleanTable": {}
+			}
+		},
+		"CustomArrangementData": {
+			"Actors": []
+		},
+		"RoomPresetName": "Default"
+	}
+}

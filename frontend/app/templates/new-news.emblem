@@ -1,0 +1,57 @@
+.news-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Создание новости
+  .content-container
+    form
+      .col.s12
+        label Заголовок новости
+        = input type='text' value=model.title
+      .col.s12
+        label Текст новости
+        = textarea class='materialize-textarea' value=model.body
+      .col.s12
+        tabs-component
+          ul.tabs
+            li.tab.col.s3
+              a href="#youtube"  Видео
+            li.tab.col.s3
+              a href="#image"  Изображение
+          #youtube.col.s12.tab-content
+            label Ссылка на видео Youtube
+            = input type='text' value=model.youtubeVideoUrl
+          #image.col.s12.tab-content
+            label Изображение
+            file-uploader file=model.file
+      .col.s12
+        label Ссылка для шаринга
+        = input type='text' value=model.sharingUrl
+      .col.with-padding.s12
+        label Тип новости
+        div
+          br
+          radio-button[
+                radioId="default"
+                radioClass="with-gap"
+                value="default"
+                groupValue=model.type]
+          label for="default" Новость
+        div
+          radio-button[
+                radioId="offer"
+                radioClass="with-gap"
+                value="offer"
+                groupValue=model.type]
+          label for="offer" Акция
+      .col.s12
+        label Дата публикации (Для отложенной публикации)
+        datetimepicker-component value=model.publicationDate
+      .col.s12
+        = input#showInApp type="checkbox" checked=model.showInApp
+        label for="showInApp" Показывать в приложении
+      if model.showInApp
+        .col.s12
+          = input#isOnSlider type="checkbox" checked=model.isOnSlider
+          label for="isOnSlider" Разместить новость в слайдере
+      .col.with-margin.s12
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить

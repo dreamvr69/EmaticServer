@@ -1,0 +1,38 @@
+.news-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Редактирование визуализации
+  .content-container
+    form
+      .col.s12.with-margin
+        label Фото
+        .news-image
+          img class="materialboxed" width="450" src=model.image_url
+      .col.s12
+        label Дата начала
+        jquery-datetimepicker value=model.begin
+      .col.s12
+        label Дата окончания
+        jquery-datetimepicker value=model.end
+      .col.with-margin.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'projects' class="waves-effect waves-light btn-large"
+          | Отмена
+
+    h5
+      div Заметки:
+
+    table.responsive-table
+        thead
+              tr
+                th  #
+                th  Дата создания
+                th  Текст
+                th  Автор
+        tbody
+              = each model.notes as |note index|
+                tr
+                  td = index
+                  td = note.creation_date
+                  td = note.body
+                  td = note.author_name

@@ -1,0 +1,18 @@
+.franchise-templates-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Редактирование франшизы
+  .content-container
+    form
+      .col.s12
+        label Фото
+        .news-image
+          img class="materialboxed" width="650" src=model.imageUrl
+
+        file-uploader file=model.image
+
+
+      .col.s12.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'franchise' model.id class="waves-effect waves-light btn-large"
+          | Отмена

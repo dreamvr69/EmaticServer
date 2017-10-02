@@ -1,0 +1,54 @@
+.qr-wrapper
+  .row.section-header
+    h4.page-title
+      div Полезное действие
+      = link-to 'edit-qr' model.id class='btn new-item without-margin'
+        i.fa.fa-pencil
+        | Редактировать
+  .content-container
+    .row
+      .col.s12
+        label Название
+        p.lead = model.name
+
+      .col.s12
+        label Описание
+        p.lead = model.description
+
+      .col.s12
+        label Количество баллов
+        p.lead = model.score
+
+      .col.s6
+        label Частота использования клиентом
+        p.lead = model.usageFrequencyForClient
+
+      .col.s6
+        label Частота использования
+        p.lead = model.usageFrequency
+
+      .col.s6
+        label Лимит использования в день для клиента
+        p.lead = model.usageLimitPerDayForClient
+
+      .col.s6
+        label Лимит использования в день
+        p.lead = model.usageLimitPerDay
+
+      .col.s6
+        label Лимит использования для клиента
+        p.lead = model.usageLimitForClient
+
+      .col.s6
+        label Лимит использования
+        p.lead = model.usageLimit
+
+      .col.s12
+        label Клуб
+        p.lead
+          link-to 'club' model.club.id
+            = model.club.name
+
+      .col.s12
+        label QR-код
+        img class="materialboxed" width="650" src=model.codeUrl

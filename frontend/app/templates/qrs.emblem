@@ -1,0 +1,33 @@
+.qrs-wrapper
+  .row.section-header
+    h4.page-title
+      div Список полезных действий
+      = if-can subjectType='Qr' subjectId=null action='create'
+        = link-to 'new-qr' class='btn new-item without-margin'
+          i.fa.fa-plus
+          | Добавить полезное действие
+  .content-container
+    table.responsive-table
+      thead
+        tr
+          th  #
+          th  Название
+          th  Количество баллов
+          th  Клуб
+          th  Действия
+      tbody
+        = each model as |qr index|
+          tr
+            td = inc index page perPage
+            td = qr.name
+            td = qr.score
+            td = qr.club.name
+            td
+              custom-action action='show' model=qr icon='fa-search' tooltipTitle='Просмотреть'
+              if-can subjectType='Qr' subjectId=null action='update'
+                custom-action action='edit' model=qr icon='fa-pencil-square-o' tooltipTitle='Редактировать'
+              if-can subjectType='Qr' subjectId=null action='destroy'
+                custom-action action='destroy' model=qr icon='fa-times' tooltipTitle='Удалить'
+
+    if isPaginationEnabled
+      = page-numbers content=paginationContent action='changePage'

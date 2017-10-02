@@ -1,0 +1,20 @@
+.client-wrapper
+  .row.section-header
+    h4.page-title
+      div Редактирование клиента #{model.name}
+
+  .content-container
+    .col.s12
+      label Ф.И.О.
+      = input type='text' value=model.name
+    .col.s12
+      label Телефон
+      = input type='text' value=model.mobile
+    .col.s12
+      label Email
+      = input type='email' value=model.email
+    .col.s12.actions
+      a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+      = link-to 'client' model.id class="waves-effect waves-light btn-large"
+        | Отмена
+

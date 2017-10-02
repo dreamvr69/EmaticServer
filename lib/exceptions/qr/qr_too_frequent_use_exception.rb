@@ -1,0 +1,2 @@
+class QrTooFrequentUseException < Exception
+end

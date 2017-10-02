@@ -1,0 +1,37 @@
+.settings-wrapper
+  .row.section-header
+    h4.page-title
+      div Настройки
+
+  .content-container
+    .row
+      .col-12
+        label Количество баллов для уровня 1
+        = input type='text' value=firstLevelMinScore
+      .col-12
+        label Количество баллов для уровня 2
+        = input type='text' value=secondLevelMinScore
+      .col-12
+        label Количество баллов для уровня 3
+        = input type='text' value=thirdLevelMinScore
+      .col-12
+        label Количество баллов для уровня 4
+        = input type='text' value=fourthLevelMinScore
+      .col-12
+        label Количество баллов для уровня 5
+        = input type='text' value=fifthLevelMinScore
+      .col-12
+        label Максимальное количество начисляемых баллов в день для одного клиента
+        = input type='text' value=maxScorePerDay
+    .row
+      if session.currentUser.isOwner
+        select-component title='Выбор франшизы' options=franchises value=selectedFranchise optionType='franchise'
+      if session.currentUser.isAdminOrOwner
+        if selectedFranchise
+          label Выберите клубы, для которых применить настройки
+          each selectedFranchise.clubs as |club|
+            .col-12
+              item-select-checkbox items=selectedClubs item=club
+    .row
+      button.waves-effect.waves-light.btn-large.white-text{action 'acceptSettings'} disabled=acceptButtonDisabled
+        | Применить настройки

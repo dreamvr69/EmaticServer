@@ -1,0 +1,135 @@
+.club-templates-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Редактирование клуба
+  .content-container
+    form
+      .row.tab-content
+        .label-wrapper
+          label Изображения клуба
+        = each model.clubImages as |image|
+          .col.s12.m6.l3.club-image
+            .material-placeholder
+              img src=image.fileUrl
+            .delete-image{action 'deleteImage' image}
+              i.fa.fa-times.fa-2x
+      .col.s12
+        club-image-uploader club=model
+      .col.s12
+        label Название клуба
+        = input type='text' value=model.name
+      .col.s12
+        label Описание клуба
+        = textarea value=model.description class='materialize-textarea'
+      .col.s12
+        .label-wrapper
+          label Режим работы
+        .col.s3.day-wrapper
+          .day-title
+            |Понедельник-Пятница
+          .day-content
+            .time
+              pick-a-time placeholder="Время начала" id="weekdaysTimeStart" on-selected=(action 'setTime') options=timepickerOptions date=model.clubShedule.weekdaysTimeStart
+              pick-a-time placeholder="Время окончания" id="weekdaysTimeStop" on-selected=(action 'setTime') options=timepickerOptions date=model.clubShedule.weekdaysTimeStop
+        .col.s3.day-wrapper
+          .day-title
+            |Суббота-Воскресение
+          .day-content
+            .time
+              pick-a-time placeholder="Время начала" id="weekendTimeStart" on-selected=(action 'setTime') options=timepickerOptions date=model.clubShedule.weekendTimeStart
+              pick-a-time placeholder="Время окончания" id="weekendTimeStop" on-selected=(action 'setTime') options=timepickerOptions date=model.clubShedule.weekendTimeStop
+      .col.s12
+        label Номер клуба
+        = input type='text' value=model.phone
+      .col.s12
+        label Адрес клуба
+        = input type='text' value=model.address
+      .col.s12
+        label Ссылка VK
+        = input type='text' value=model.vkLink
+      .col.s12
+        label Ссылка Twitter
+        = input type='text' value=model.twitterLink
+      .col.s12
+        label Ссылка Facebook
+        = input type='text' value=model.facebookLink
+      .col.s12
+        label Ссылка Instagram
+        = input type='text' value=model.instagramLink
+      .col.s12
+        label Ссылка на сайт клуба
+        = input type='text' value=model.websiteLink
+      .col.s12
+        label Количество баллов за шаринг VK
+        = input type='text' value=model.vkShareScore
+      .col.s12
+        label Количество вознаграждаемых постов в день VK
+        = input type='text' value=model.vkSharePerDay
+      .col.s12
+        label Количество баллов за шаринг Twitter
+        = input type='text' value=model.twitterShareScore
+      .col.s12
+        label Количество вознаграждаемых постов в день Twitter
+        = input type='text' value=model.twitterSharePerDay
+      .col.s12
+        label Количество баллов за шаринг Facebook
+        = input type='text' value=model.facebookShareScore
+      .col.s12
+        label Количество вознаграждаемых постов в день Facebook
+        = input type='text' value=model.facebookSharePerDay
+      .col.s12
+        label Количество баллов за шаринг Instagram
+        = input type='text' value=model.instagramShareScore
+      .col.s12
+        label Количество вознаграждаемых постов в день Instagram
+        = input type='text' value=model.instagramShareScore
+      .col.s12
+        .row
+          .col.s6
+            h4.center-align Основные услуги
+            if baseServices
+              ul.collection
+                each baseServices as |service|
+                  li.collection-item
+                    .row
+                      .col.s6
+                        label Название
+                        p.lead = service.name
+                      .col.s12
+                        label Описание
+                        p.lead = service.description
+                  br
+            else
+              p.lead Основных услуг нет
+          .col.s6
+            h4.center-align Дополнительные услуги
+            if extraServices
+              ul.collection
+                each extraServices as |service|
+                  li.collection-item
+                    .row
+                      .col.s6
+                        label Название
+                        = input type='text' value=service.name
+                      .col.s12
+                        label Описание
+                        = textarea value=service.description class='materialize-textarea'
+                      .col.s12
+                        label Стоимость
+                        = input type='text' value=service.price
+                    .row
+                      .col.s12
+                        a.waves-effect.waves-light.btn.white-text{action 'removeExtraService' service}
+                          i.fa.fa-times
+                          |&nbsp;Удалить услугу
+                  br
+            else
+              p.lead Дополнительных услуг нет
+            .row
+              a.waves-effect.waves-light.btn.white-text{action 'addExtraService'}
+                i.fa.fa-plus
+                |&nbsp;Добавить дополнительную услугу
+      .col.s12.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'club' model.id class="waves-effect waves-light btn-large"
+          |Отмена

@@ -1,0 +1,31 @@
+.user-type-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Создание типа учетной записи
+  .content-container
+    form
+      .col.s12
+        label Название типа учетной записи
+        = input type='text' value=model.name
+      .col.s12
+        label Описание учетной записи
+        = textarea class='materialize-textarea' value=model.description
+      .col.s12
+        label.with-padding Выберите доступные роли
+        .row
+          .col.s12
+            role-select-component availableRoles=defaultRoles roles=model.roles
+      .col.s12
+        label.with-padding Выберите доступные действия
+        .row
+          .col.s6
+            = each readerRoles as |role|
+                role-check-component role=role roles=model.roles
+          .col.s6
+            = each writerRoles as |role|
+                role-check-component role=role roles=model.roles
+      .col.actions
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'user-types' class="waves-effect waves-light btn-large"
+          |Отмена
+

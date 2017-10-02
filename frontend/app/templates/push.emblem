@@ -1,0 +1,30 @@
+.push-wrapper
+  .row.section-header
+    h4.page-title
+      div Информация о пуше
+  .content-container
+    .row
+      .col.s12
+        label Автор
+        p.lead = model.formattedCreator
+
+      .col.s12
+        label Заголовок
+        p.lead = model.title
+
+      .col.s12
+        label Текст
+        p.lead = model.text
+
+      .col.s12
+        label Дата публикации
+        p.lead = model.formattedPublicationDate
+
+      .col.s12
+        h5 Клиенты: #{model.users.length}
+
+      .col.s12
+        ul
+          each model.users as |user|
+            li #{user.name}, Франшиза: #{user.franchise.name}
+

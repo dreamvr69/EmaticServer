@@ -1,0 +1,27 @@
+.schedule-wrapper
+  .row.section-header
+    h4.page-title
+      div Расписание
+      if-can subjectType='Workout' subjectId=null action='create'
+        a.btn.new-item.without-margin{action 'openModal'}
+          i.fa.fa-plus
+          | Добавить занятие
+        a.btn.new-item{action 'openScheduleTemplateModal'}
+          i.fa.fa-share
+          | Заполнить по шаблону
+.content-container
+  full-calendar [
+    header=fcHeader
+    events=events
+    eventRender=(action "eventRender")
+    defaultView='agendaWeek'
+    timeFormat="HH:mm"
+    slotDuration="00:10:00"
+    scrollTime="00:30"
+    minTime="08:00"
+    maxTime="24:00"
+    allDaySlot=false
+    nowIndicator=true
+    lang="ru"
+    firstDay=1
+  ]

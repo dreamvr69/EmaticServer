@@ -1,0 +1,2 @@
+class QrTooMuchUsageByClientException < Exception
+end

@@ -1,0 +1,28 @@
+.history-wrapper
+  .row.section-header
+    h4.page-title
+      div Запись начисления баллов
+  .content-container
+    .col.s12
+      label Франшиза
+      p.lead = model.client.franchise.name
+
+    if model.manager
+      .col.s12
+        label Клуб
+        p.lead = model.manager.selectedClub.name
+    .col.s12
+      label Клиент
+      p.lead = model.client.name
+    .col.s12
+      label Тип записи
+      p.lead = model.formattedType
+    .col.s12
+      label Дата и время
+      p.lead = model.formattedDateTime
+
+    if model.manager
+      .col.s12
+        label Менеджер
+        p.lead = model.formattedManager
+

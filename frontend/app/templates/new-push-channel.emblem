@@ -1,0 +1,49 @@
+.push-channel-wrapper
+  .row.section-header
+    h4.page-title
+      div Создание группы клиентов
+  .content-container
+    .row
+      .col-12
+        label Название группы
+        = input type='text' value=model.name
+
+      .col-12
+        label Описание группы
+        = textarea class='materialize-textarea' value=model.description
+
+      if session.currentUser.isOwner
+        .col-12
+          select-component title='Выбор франшизы' options=franchises value=model.franchise optionType='franchise'
+          if model.franchise
+            a.waves-effect.waves-light.btn-small.white-text.default{action 'removeFranchise'} Очистить поле франшиза
+
+      if session.currentUser.isAdminOrOwner
+        if model.franchise
+          .col-12
+            select-component title='Выбор клуба' options=model.franchise.clubs value=model.club optionType='club'
+            if model.club
+              a.waves-effect.waves-light.btn-small.white-text.default{action 'removeClub'} Очистить поле клуб
+
+      .col.s12
+        h5 Клиенты: #{model.users.length}
+      .row.filters
+        .col.s4
+          static-select title='Выбор пола' options=SEXES value=sex
+          if sex
+            a.waves-effect.waves-light.btn-small.white-text.default{action 'removeSex'} Очистить фильтр
+        .col.s1.margin-top
+          = input type='text' placeholder='Возраст (от):' value=ageFrom
+        .col.s1.margin-top
+          = input type='text' placeholder='Возраст (до):' value=ageTo
+        .col.s6.margin-top
+          = input type='text' placeholder='Ф.И.О.' value=filterName
+      .col.s12
+        each filteredUsers as |user|
+          item-select-checkbox items=model.users item=user
+
+      .col.s12.actions.with-margin
+        a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+        = link-to 'push-channels' class="waves-effect waves-light btn-large"
+          | Отмена
+

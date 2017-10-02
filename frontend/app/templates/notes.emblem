@@ -1,0 +1,17 @@
+.news-wrapper
+  .row.section-header
+    h4.page-title
+      div Список проектов
+  .content-container
+    table.responsive-table
+      thead
+        tr
+          th  #
+          th  Текст
+          th  Дата создания
+      tbody
+        = each model as |note index|
+          tr
+            td = index
+            td = note.body
+            td = note.creation_date

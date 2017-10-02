@@ -1,0 +1,29 @@
+.club-templates-wrapper
+  .row.section-header
+    h4.page-title
+      div.inline-block Создание клуба
+  .content-container
+    form
+      .col.s12
+        label Имя клуба
+        = input type='text' value=model.name
+      .col.s12
+        label Описание клуба
+        = textarea value=model.description  class='materialize-textarea'
+      .col.s12
+        label Телефон клуба
+        = input type='text' value=model.phone
+      .col.s12
+        label Адрес клуба
+        = input type='text' value=model.address
+      .col.s12
+        label Адрес веб-сайта клуба
+        = input type='text' value=model.websiteLink
+      if session.currentUser.isOwner
+        .col.s12
+          select-component title='Выбор франшизы' options=franchises value=model.franchise optionType='franchise'
+
+    .col.s12.actions
+      a.waves-effect.waves-light.btn-large.white-text{action 'save'} Сохранить
+      = link-to 'clubs' class="waves-effect waves-light btn-large"
+        | Отмена
