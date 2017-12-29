@@ -12,12 +12,17 @@ Database: MongoDB
 
 https://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder (Ошибка, которая может возникнуть)
 
-3) Запустить сервер mongo командой "mongod"
+3) Запустить сервер mongo командой 
+```ruby
+mongod
+```
 
-4) При запуске может возникать проблема https://stackoverflow.com/questions/6478113/unable-to-start-mongodb-local-server. Решение в ответе к посту: sudo killall -15 mongod 
+4) При запуске может возникать проблема addr *already in use* (https://stackoverflow.com/questions/6478113/unable-to-start-mongodb-local-server). Решение в ответе к посту: sudo killall -15 mongod 
 
 5) Запустить рельсовый сервер из корня проекта
-
+```ruby
+rails s
+```
 6) При установке гемов могут возникнуть ошибки, вот ссылки на решение некоторых:
 https://stackoverflow.com/questions/40154671/error-installing-nio4r
 

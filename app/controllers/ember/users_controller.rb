@@ -118,7 +118,7 @@ class Ember::UsersController < ApplicationController
       return true
     elsif @current_user.user_role == 'franchise_administrator' && User.find(params.id).franchise_id == @current_user.franchise_id
       return true
-    elsif BSON::ObjectId.from_string(params[:id]) == @current_user.# IDEA:
+    elsif BSON::ObjectId.from_string(params[:id]) == @current_user.id:
       return true
     else
       return false
