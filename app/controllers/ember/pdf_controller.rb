@@ -42,8 +42,8 @@ class Ember::PdfController < ApplicationController
     options = { :address        => "smtp.gmail.com",
           :port                 => 587,
           :domain               => 'your.host.name',
-          :user_name            => Rails.email_login,
-          :password             => Rails.email_passwod,
+          :user_name            => Rails.application.secrets.email_login,
+          :password             => Rails.application.secrets.email_passwod,
           :authentication       => 'plain',
           :enable_starttls_auto => true  }
 
