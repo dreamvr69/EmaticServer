@@ -107,7 +107,7 @@ class Ember::ProjectsController < ApplicationController
       project.visualisations << visualisation
     end
 
-    render :nothing => true
+    render json: {id: visualisation.id}
   end
 
   def add_visualisation_by_id
@@ -120,6 +120,10 @@ class Ember::ProjectsController < ApplicationController
       project.visualisations << visualisation
     end
 
+  end
+
+  def destroy
+    Project.where(id: params[:id]).destroy
   end
 
   protected

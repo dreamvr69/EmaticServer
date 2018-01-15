@@ -43,7 +43,7 @@ class Ember::PdfController < ApplicationController
           :port                 => 587,
           :domain               => 'your.host.name',
           :user_name            => Rails.application.secrets.email_login,
-          :password             => Rails.application.secrets.email_passwod,
+          :password             => Rails.application.secrets.email_password,
           :authentication       => 'plain',
           :enable_starttls_auto => true  }
 
@@ -68,7 +68,7 @@ class Ember::PdfController < ApplicationController
 
     for email in emails_list
       mail = Mail.new do
-        from    'info.dreamvr@gmail.com'
+        from    Rails.application.secrets.email_login
         to      email
         subject subject
         body body
