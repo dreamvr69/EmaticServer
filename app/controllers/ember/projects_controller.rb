@@ -99,12 +99,14 @@ class Ember::ProjectsController < ApplicationController
 
   def add_visualisation
     visualisation = Visualisation.new(params.permit(:data, :room, :begin, :end, :image_url, :guest_count, :arrangement_type))
+    visualisation.user = @current_user
     project = Project.find(params[:id])
 
     if visualisation.nil?
       head 404
     else
       project.visualisations << visualisation
+      visualisation.save
     end
 
     render json: {id: visualisation.id}
